@@ -3,6 +3,38 @@ import { animate } from "animejs";
 const canvas = document.querySelector("#canvas");
 const ctx = canvas.getContext("2d");
 
+let inkColor = "#080808";
+
+const colorButtons = document.querySelectorAll(".color");
+const colorpicker = document.querySelector("#colorPicker");
+const colorHex = document.querySelector("#colorHex");
+
+colorButtons.forEach(button =>
+    button.addEventListener("click",() => {
+            inkColor = button.dataset.color;
+            colorButtons.forEach( b => b.classList.remove("active"));
+            button.classList.add("active")
+            colorpicker.value = inkColor;
+            colorHex.textContent = inkColor;
+
+
+}));
+
+
+colorPicker.addEventListener(
+    "input",
+    event => {
+        inkColor =
+            event.target.value;
+
+        colorButtons.forEach(
+            b => b.classList.remove("active")
+        );
+
+        colorHex.textContent =
+            inkColor;
+    }
+);
 let W = 0;
 let H = 0;
 let DPR = 1;
@@ -860,14 +892,7 @@ function drawMark(mark) {
 
     ctx.closePath();
 
-    ctx.fillStyle =
-        `rgba(5,5,5,${
-            Math.max(
-                0,
-                mark.alpha *
-                mark.life
-            )
-        })`;
+    ctx.fillStyle =rgba(inkColor,mark.alpha * mark.life);
 
     ctx.fill();
 
@@ -890,10 +915,7 @@ function drawSplats() {
     for (const s of splats) {
         ctx.beginPath();
 
-        ctx.fillStyle =
-            `rgba(5,5,5,${
-                s.life * .75
-            })`;
+        ctx.fillStyle =rgba(inkColor,s.life * 0.75);
 
         ctx.arc(
             s.x,
@@ -920,10 +942,7 @@ function drawDust() {
             p.rotation
         );
 
-        ctx.fillStyle =
-            `rgba(5,5,5,${
-                p.life * .85
-            })`;
+        ctx.fillStyle =rgba(inkColor,p.life * 0.85);
 
         ctx.beginPath();
 
@@ -955,10 +974,7 @@ function drawShockwaves() {
             Math.PI * 2
         );
 
-        ctx.strokeStyle =
-            `rgba(5,5,5,${
-                wave.life * .28
-            })`;
+        ctx.strokeStyle = rgba(inkColor,wave.life * 0.28);
 
         ctx.lineWidth =
             1 +
@@ -998,6 +1014,17 @@ function render(now) {
         render
     );
 }
+
+function rgba(hex,alpha) {
+    const value = hex.replace("#","")
+    const r = parseInt(value.slice(0,2),16);
+    const g = parseInt(value.slice(2,4),16);
+    const b = parseInt(value.slice(4,6),16);
+    return `rgba(${r},${g},${b},${alpha})`;
+
+}
+
+
 
 requestAnimationFrame(
     render
