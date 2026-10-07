@@ -22,8 +22,30 @@
             <i></i>
             <span>Mouse</span>
             <i></i>
-
         </div>
+    </div>
+
+    <div class = "color-panel">
+    <div class = "color-panel">Ink Color</div>
+    <div class="color-row">
+            <button class="color active" data-color="#080808" style="--c:#080808"></button>
+            <button class="color" data-color="#d7263d" style="--c:#d7263d"></button>
+            <button class="color" data-color="#246bfd" style="--c:#246bfd"></button>
+            <button class="color" data-color="#0fa968" style="--c:#0fa968"></button>
+            <button class="color" data-color="#f0a202" style="--c:#f0a202"></button>
+            <button class="color" data-color="#8b5cf6" style="--c:#8b5cf6"></button>
+
+            <label class="custom-color">
+                <input id="colorPicker" type="color" value="#080808">
+                <span>+</span>
+            </label>
+    </div>
+
+        <div class="current-color">
+            <span id="colorName">INK</span>
+            <span id="colorHex">#080808</span>
+        </div>
+    </div>
 
     </div>
     <script type = "module" src = "script.js"></script>
