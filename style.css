@@ -95,3 +95,109 @@ body {
     border-radius: 50%;
     background: #111;
 }
+
+.color-panel {
+    position: fixed;
+    left: 34px;
+    bottom: 30px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    color: #111;
+
+    user-select: none;
+    pointer-events: auto;
+}
+
+.color-label {
+    font-family: Arial, sans-serif;
+    font-size: 6px;
+    letter-spacing: 3px;
+    opacity: .28;
+}
+
+.color-row {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.color {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--c);
+    cursor: pointer;
+    box-shadow:
+        0 0 0 1px rgba(0,0,0,.08);
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.color:hover {
+    transform: scale(1.2);
+}
+
+.color.active {
+    transform: scale(1.15);
+    box-shadow:
+        0 0 0 1px #e9e5da,
+        0 0 0 2px #111;
+}
+
+.custom-color {
+    position: relative;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px dashed rgba(0,0,0,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.custom-color:hover {
+    transform: scale(1.2);
+    border-color: #111;
+}
+
+.custom-color input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+}
+
+.custom-color span {
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1;
+    transform: translateY(-1px);
+    opacity: 0.55;
+}
+
+.current-color {
+    display: flex;
+    justify-content: space-between;
+    width: 145px;
+    font-family: Arial, sans-serif;
+    font-size: 6px;
+    letter-spacing: 2px;
+    opacity: 0.28;
+}
+
+#colorHex {
+    font-variant-numeric: tabular-nums;
+}
